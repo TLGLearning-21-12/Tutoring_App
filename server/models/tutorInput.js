@@ -4,6 +4,7 @@ const tutorSchema = mongoose.Schema({
   title: String,
   name: String,
   subject: [String],
+  yearsOfExp: Number,
   selectedFile: String,
   endorsmentCount: {
     type: Number,
