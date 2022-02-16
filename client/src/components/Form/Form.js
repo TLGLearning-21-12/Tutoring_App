@@ -1,10 +1,9 @@
 import React from "react";
-
 import useStyles from "./styles.js";
 
-const Tutor = ({ tutor, setCurrentId }) => {
+const Form = () => {
   const classes = useStyles();
-  return <h1>Tutor</h1>;
+  return <h1>Form</h1>;
 };
 
-export default Tutor;
+export default Form;
