@@ -1,11 +1,37 @@
+import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
+import beach from "./images/beach.png";
+import Tutors from "./components/Tutors/Tutors.js";
+import Form from "./components/Form/Form.js";
+import useStyles from "./styles.js";
+
 function App() {
+  const classes = useStyles();
   return (
-    <div className="App">
-      <h1>Meri can push to the repo, again</h1>
-      <h1>Percell can push to repo#</h1>
-      <h1>Justin can push to repo too</h1>
-      <h1>Maria can push to repo too</h1>
-    </div>
+    <Container maxWidth="lg">
+      <AppBar className={classes.appBar} position="static" color="inherit">
+        <Typography className={classes.heading} variant="h2" align="center">
+          iTutor
+        </Typography>
+        <img className={classes.image} src={beach} alt="tutors" height="60" />
+      </AppBar>
+      <Grow in>
+        <Container>
+          <Grid
+            container
+            justify="space-between"
+            alignItems="stretch"
+            spacing={3}
+          >
+            <Grid item xs={12} sm={7}>
+              <Tutors />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Form />
+            </Grid>
+          </Grid>
+        </Container>
+      </Grow>
+    </Container>
   );
 }
 
