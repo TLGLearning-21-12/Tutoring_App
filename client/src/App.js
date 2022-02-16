@@ -28,6 +28,7 @@ function App() {
             <Grid item xs={12} sm={4}>
               <Form />
             </Grid>
+            <Grid item xs={12} sm={4}></Grid>
           </Grid>
         </Container>
       </Grow>
