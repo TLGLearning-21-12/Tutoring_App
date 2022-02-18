@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useStyles from "./styles.js";
+import { useDispatch, useSelector } from "react-redux";
+import { createTutor, updateTutor } from "../../actions/tutors.js";
 
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
 
-const Form = () => {
-  const classes = useStyles();
-  const clear = () => {};
+const Form = ({ currentId, setCurrentId }) => {
   const [frmData, setFrmData] = useState({
     title: "",
     name: "",
@@ -15,10 +15,37 @@ const Form = () => {
     selectedFile: "",
     endorsementCount: 0,
   });
+  const tutor = useSelector((state) =>
+    currentId ? state.tutors.find((t) => t._id === currentId) : null
+  );
+
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (tutor) {
+      setFrmData(tutor);
+    }
+  }, [tutor]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log("Test....");
+    if (currentId) {
+      dispatch(updateTutor(currentId, frmData));
+    } else {
+      dispatch(createTutor(frmData));
+    }
+    clear();
+  };
+  const clear = () => {
+    setCurrentId(null);
+    setFrmData({
+      title: "",
+      name: "",
+      subject: "",
+      yearsOfExp: 0,
+      selectedFile: "",
+      endorsementCount: 0,
+    });
   };
 
   return (
@@ -28,7 +55,9 @@ const Form = () => {
         noValidate={`${classes.root} ${classes.form} `}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">Tutor sign up</Typography>
+        <Typography variant="h6">
+          {currentId ? "Editing a tutor" : "Creating a tutor"}
+        </Typography>
         <TextField
           name="title"
           variant="outlined"
