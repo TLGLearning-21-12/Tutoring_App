@@ -7,11 +7,10 @@ import tutorRoutes from "./routes/tutors.js";
 
 const app = express();
 
-app.use("/tutors", tutorRoutes);
-
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+app.use("/tutors", tutorRoutes);
 
 const CONNECTION_URL =
   "mongodb+srv://Meri:tutoringmpjs@cluster0.qstm5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";

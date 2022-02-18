@@ -1,4 +1,4 @@
 import { combineReducers } from "redux";
-import posts from "./posts.js";
+import tutors from "./tutors.js";
 
-export default combineReducers({ posts });
+export default combineReducers({ tutors });
