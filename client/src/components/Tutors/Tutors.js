@@ -19,15 +19,15 @@ const Tutors = ({ setCurrentId }) => {
   return !tutors.length ? (
     <CircularProgress />
   ) : (
-    <Grid className={classes.constainer} constainer alignItems spacing={3}>
+    <Grid
+      className={classes.container}
+      container
+      alignItems
+      justifyContent="flex-start"
+      spacing={3}
+    >
       {tutors.map((tutor) => (
-        <Grid
-          key={tutor._id}
-          item
-          container
-          spacing={3}
-          justifyContent="flex-end"
-        >
+        <Grid key={tutor._id} item spacing={3}>
           <Tutor tutor={tutor} setCurrentId={setCurrentId} />
         </Grid>
       ))}
